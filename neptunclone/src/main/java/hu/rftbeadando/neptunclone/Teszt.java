@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class Teszt {
 
     @GetMapping("/teszt")
-    public String tesztFuggveny(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {
+    public String tesztFuggveny(@RequestParam(name="name", required=false, defaultValue="World") String name,
+                                @RequestParam(value="fruit", required=false, defaultValue="alma") String fruit,
+                                Model model) {
         model.addAttribute("name", name);
+        model.addAttribute("fruit", fruit);
         return "teszt";
     }
 }
