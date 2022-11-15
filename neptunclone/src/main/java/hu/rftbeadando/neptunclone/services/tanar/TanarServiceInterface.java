@@ -9,4 +9,5 @@ public interface TanarServiceInterface {
     Collection<TanarEntity> getAllTanar();
     TanarEntity getTanarById(Long id);
     Long getTanarIdByUsername(String userName);
+    boolean existsTanarByUserName(String userName);
 }

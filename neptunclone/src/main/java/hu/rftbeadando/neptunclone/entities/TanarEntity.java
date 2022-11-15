@@ -8,24 +8,20 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tanar")
 @NoArgsConstructor
-@Data
 public class TanarEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tanarId;
+    public Long tanarId;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    public String name;
 
     @Column(name = "username", nullable = false)
-    private String userName;
+    public String userName;
 
-    @Column(name = "password", nullable = false)
-    private String passWord;
 
-    public TanarEntity(String name, String userName, String passWord) {
+    public TanarEntity(String name, String userName) {
         this.name = name;
         this.userName = userName;
-        this.passWord = passWord;
     }
 }

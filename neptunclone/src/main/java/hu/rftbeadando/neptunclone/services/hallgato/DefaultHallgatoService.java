@@ -24,8 +24,6 @@ public class DefaultHallgatoService implements HallgatoServiceInterface{
     public void addHallgato(HallgatoEntity entity) {
         try{
             hallgatoRepository.save(entity);
-        }catch (DataIntegrityViolationException e){
-            throw new UserNameAlreadyInUseException("Username: "+ entity.getUserName() + " already in use.");
         }catch (Exception e){
             throw new RuntimeException("Oops, something went wrong.");
         }
@@ -44,5 +42,10 @@ public class DefaultHallgatoService implements HallgatoServiceInterface{
     @Override
     public Long getHallgatoIdByUsername(String userName) {
         return hallgatoRepository.findIdByUserName(userName);
+    }
+
+    @Override
+    public boolean existsHallgatoByUserName(String userName) {
+        return hallgatoRepository.existsHallgatoByUserName(userName);
     }
 }

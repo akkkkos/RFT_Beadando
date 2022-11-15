@@ -1,4 +1,4 @@
-package hu.rftbeadando.neptunclone;
+package hu.rftbeadando.neptunclone.formmodels;
 
 public class LoginFormValues {
 

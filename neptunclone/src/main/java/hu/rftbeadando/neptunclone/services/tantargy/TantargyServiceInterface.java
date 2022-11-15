@@ -8,4 +8,5 @@ public interface TantargyServiceInterface {
     void addTantargy(TantargyEntity request);
     Collection<TantargyEntity> getAllTantargy();
     TantargyEntity getTantargyById(Long id);
+    Collection<TantargyEntity> getAllTantargyByTanarId(Long tanarId);
 }

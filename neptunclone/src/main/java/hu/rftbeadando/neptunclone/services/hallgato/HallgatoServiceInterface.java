@@ -9,4 +9,5 @@ public interface HallgatoServiceInterface {
     Collection<HallgatoEntity> getAllHallgato();
     HallgatoEntity getHallgatoById(Long id);
     Long getHallgatoIdByUsername(String userName);
+    boolean existsHallgatoByUserName(String userName);
 }

@@ -13,19 +13,17 @@ import java.util.Collection;
 @Service
 public class DefaultTanarService implements TanarServiceInterface {
 
-    private final TanarRepository TanarRepository;
+    private final TanarRepository tanarRepository;
 
     @Autowired
     public DefaultTanarService(TanarRepository TanarRepository) {
-        this.TanarRepository = TanarRepository;
+        this.tanarRepository = TanarRepository;
     }
 
     @Override
     public void addTanar(TanarEntity entity) {
         try{
-            TanarRepository.save(entity);
-        }catch (DataIntegrityViolationException e){
-            throw new UserNameAlreadyInUseException("Username: "+ entity.getUserName() + " already in use.");
+            tanarRepository.save(entity);
         }catch (Exception e){
             throw new RuntimeException("Oops, something went wrong.");
         }
@@ -33,16 +31,21 @@ public class DefaultTanarService implements TanarServiceInterface {
 
     @Override
     public Collection<TanarEntity> getAllTanar() {
-        return TanarRepository.findAll();
+        return tanarRepository.findAll();
     }
 
     @Override
     public TanarEntity getTanarById(Long id) {
-        return TanarRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
+        return tanarRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
     }
 
     @Override
     public Long getTanarIdByUsername(String userName) {
-        return TanarRepository.findIdByUserName(userName);
+        return tanarRepository.findIdByUserName(userName);
+    }
+
+    @Override
+    public boolean existsTanarByUserName(String userName) {
+        return tanarRepository.existsTanarByUserName(userName);
     }
 }
