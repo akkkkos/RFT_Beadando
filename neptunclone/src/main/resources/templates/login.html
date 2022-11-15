@@ -11,7 +11,7 @@
 <body>
 <div>
     <div>
-        <form th:action="@{/}" method="post" th:object="${user}">
+        <form th:action="@{/}" method="post" th:object="${loginFormValues}">
             <div class="form-group">
                 <label>Felhasználónév:</label>
                 <input type="text" id="username" name="username"><br>
@@ -28,6 +28,7 @@
                 <button type="submit" value="belepes">Belépés</button>
             </div>
         </form>
+        <span th:if="${badLogin == 1}">User not found with given inputs</span>
     </div>
 </div>
 </body>

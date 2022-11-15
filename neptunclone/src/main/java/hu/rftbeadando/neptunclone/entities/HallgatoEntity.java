@@ -1,4 +1,4 @@
-package hu.rftbeadando.neptunclone.model;
+package hu.rftbeadando.neptunclone.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Table(name = "hallgato")
 @NoArgsConstructor
 @Data
-public class HallgatoModel {
+public class HallgatoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long hallgatoId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -21,10 +21,10 @@ public class HallgatoModel {
     @Column(name = "username", nullable = false)
     private String userName;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password", nullable = true)
     private String passWord;
 
-    public HallgatoModel(String name, String userName, String passWord) {
+    public HallgatoEntity(String name, String userName, String passWord) {
         this.name = name;
         this.userName = userName;
         this.passWord = passWord;

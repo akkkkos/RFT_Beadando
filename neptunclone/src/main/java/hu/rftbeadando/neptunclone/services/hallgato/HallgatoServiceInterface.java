@@ -1,12 +1,12 @@
 package hu.rftbeadando.neptunclone.services.hallgato;
 
-import hu.rftbeadando.neptunclone.model.HallgatoModel;
+import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 
 import java.util.Collection;
 
 public interface HallgatoServiceInterface {
-    void addHallgato(HallgatoModel request);
-    Collection<HallgatoModel> getAllHallgato();
-    HallgatoModel getHallgatoById(Long id);
+    void addHallgato(HallgatoEntity request);
+    Collection<HallgatoEntity> getAllHallgato();
+    HallgatoEntity getHallgatoById(Long id);
     Long getHallgatoIdByUsername(String userName);
 }

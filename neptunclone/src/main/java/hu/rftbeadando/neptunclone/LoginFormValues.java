@@ -1,6 +1,6 @@
 package hu.rftbeadando.neptunclone;
 
-public class User {
+public class LoginFormValues {
 
     private String username;
     private String password;
