@@ -9,4 +9,5 @@ public interface TantargyServiceInterface {
     Collection<TantargyEntity> getAllTantargy();
     TantargyEntity getTantargyById(Long id);
     Collection<TantargyEntity> getAllTantargyByTanarId(Long tanarId);
+    void deleteByIdOnlyTantargy(Long id);
 }

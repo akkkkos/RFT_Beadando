@@ -41,4 +41,9 @@ public class DefaultTantargyService implements TantargyServiceInterface {
     public Collection<TantargyEntity> getAllTantargyByTanarId(Long tanarId) {
         return tantargyRepository.getAllTantargyByTanarId(tanarId);
     }
+
+    @Override
+    public void deleteByIdOnlyTantargy(Long id) {
+        tantargyRepository.deleteByIdOnlyTantargy(id);
+    }
 }

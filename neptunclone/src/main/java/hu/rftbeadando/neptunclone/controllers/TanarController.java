@@ -30,7 +30,7 @@ public class TanarController {
         Collection<TantargyEntity> tantargyak = tantargyService.getAllTantargyByTanarId(id);
         TanarEntity tanarEntity = tanarService.getTanarById(id);
 
-        model.addAttribute("tantargyak", tantargyak.toArray());
+        model.addAttribute("tantargyak", tantargyak);
         model.addAttribute("id", id);
         model.addAttribute("tanar", tanarEntity);
 
@@ -45,20 +45,38 @@ public class TanarController {
 
     @PostMapping("/tanar/{id}/addTantargy")
     public RedirectView addTantargyToDb(@ModelAttribute("tantargy") TantargyFormValues tantargyFormValues, @PathVariable Long id) {
+        String url = "/tanar/" + id;
 
-        TantargyEntity tantargy = new TantargyEntity(
-                tantargyFormValues.getName(),
-                tantargyFormValues.getDayOfTheWeek(),
-                tantargyFormValues.getStartTime(),
-                tantargyFormValues.getDurationInMinutes(),
-                tantargyFormValues.getMaxHallgato(),
-                tantargyFormValues.getKredit(),
-                tanarService.getTanarById(id)
-        );
+        if (
+                tantargyFormValues.getName().equals("") ||
+                        tantargyFormValues.getStartTime().equals("") ||
+                        tantargyFormValues.getDayOfTheWeek().equals("")
+        ) {
+            url = "/tanar/" + id + "/addTantargy?missing=1";
+        } else {
+            TantargyEntity tantargy = new TantargyEntity(
+                    tantargyFormValues.getName(),
+                    tantargyFormValues.getDayOfTheWeek(),
+                    tantargyFormValues.getStartTime(),
+                    tantargyFormValues.getDurationInMinutes(),
+                    tantargyFormValues.getMaxHallgato(),
+                    tantargyFormValues.getKredit(),
+                    tanarService.getTanarById(id)
+            );
 
-        tantargyService.addTantargy(tantargy);
+            tantargyService.addTantargy(tantargy);
+        }
 
-        return new RedirectView("/tanar/" + id + "");
+
+        return new RedirectView(url);
+    }
+
+    @GetMapping("/tanar/{id}/removeTantargy/{tantargyId}")
+    public RedirectView removeTantargy(@PathVariable Long id, @PathVariable Long tantargyId) {
+        tantargyService.deleteByIdOnlyTantargy(tantargyId);
+        RedirectView redirectView = new RedirectView();
+        redirectView.setUrl("/tanar/" + id + "?removed=1");
+        return redirectView;
     }
 
 }

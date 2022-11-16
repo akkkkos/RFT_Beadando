@@ -23,25 +23,31 @@
 <body>
 <div class="center-screen">
     <form th:action="@{/}" method="get">
-        <button type="submit" value="vissza">Kijelentkezés</button><br/>
+        <button type="submit" value="vissza">Kijelentkezés</button><br>
     </form>
     <form th:action="@{/tanar/__${id}__/addTantargy}" method="get">
-        <button type="submit" value="hozzaadoldal">Új Tantárgy hozzáadása</button><br/><br/>
+        <button type="submit" value="hozzaadoldal">Új Tantárgy hozzáadása</button><br>
     </form>
 
     <table>
-        <tr>
+        <tr th:unless="${tantargyak.isEmpty()}">
             <td>Név:</td>
             <td colspan="2">Időpont:</td>
             <td>Időtartam</td>
             <td>Kredit:</td>
+            <td></td>
         </tr>
         <tr th:each="tantargy: ${tantargyak}">
             <td th:text="${tantargy.name}"/>
             <td th:text="${tantargy.dayOfTheWeek}"/>
             <td th:text="${tantargy.startTime}"/>
-            <td th:text="${tantargy.durationInMinutes} + 'perc'"/>
+            <td th:text="${tantargy.durationInMinutes} + ' perc'"/>
             <td th:text="${tantargy.kredit}"/>
+            <td>
+                <form th:action="@{/tanar/__${id}__/removeTantargy/__${tantargy.tantargyId}__}" method="get">
+                    <button type="submit" value="vissza" class="btn btn-danger">Törlés</button>
+                </form>
+            </td>
         </tr>
     </table>
 
