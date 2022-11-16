@@ -24,25 +24,29 @@
 <body>
 <div class="center-screen">
     <div>
-        <form th:action="@{/}" method="post" th:object="${loginFormValues}">
+        <form th:action="@{/}" method="get">
+            <button type="submit" value="vissza">Vissza</button><br/><br/>
+        </form>
+        <form th:action="@{/register}" method="post" th:object="${registerFormValues}">
             <div class="form-group">
                 <label>Felhasználónév:</label>
                 <input type="text" id="username" name="username"><br>
+            </div>
+            <div class="form-group">
+                <label>Név:</label>
+                <input type="text" id="name" name="name"><br>
             </div>
             <div class="form-group">
                 <label>Hallgató:</label>
                 <input type="radio" value="hallgato" name="type" checked="" id="type">
                 <label>Tanár:</label>
                 <input type="radio" value="tanar" name="type" id="type"><br>
-                <button type="submit" value="belepes">Belépés</button><br>
+                <button type="submit" value="belepes">Regisztálás</button><br>
             </div>
         </form>
-        <span th:if="${badLogin == 1}">Nem található ilyen felhasználó.<br></span>
+        <span th:if="${missing == 1}">Hiányzó adatok.<br><br></span>
+        <span th:if="${exists == 1}">Már van ilyen felhasználó.<br><br></span>
     </div>
-
-    <form th:action="@{/register}" method="get">
-        <button type="submit" value="regisztralas">Regisztrálás</button>
-    </form>
 </div>
 </body>
 </html>

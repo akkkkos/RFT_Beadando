@@ -2,7 +2,7 @@ package hu.rftbeadando.neptunclone.services.hallgato;
 
 import hu.rftbeadando.neptunclone.exceptions.UserNameAlreadyInUseException;
 import hu.rftbeadando.neptunclone.exceptions.UserNotFoundException;
-import hu.rftbeadando.neptunclone.model.HallgatoModel;
+import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 import hu.rftbeadando.neptunclone.repository.HallgatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -21,28 +21,31 @@ public class DefaultHallgatoService implements HallgatoServiceInterface{
     }
 
     @Override
-    public void addHallgato(HallgatoModel entity) {
+    public void addHallgato(HallgatoEntity entity) {
         try{
             hallgatoRepository.save(entity);
-        }catch (DataIntegrityViolationException e){
-            throw new UserNameAlreadyInUseException("Username: "+ entity.getUserName() + " already in use.");
         }catch (Exception e){
             throw new RuntimeException("Oops, something went wrong.");
         }
     }
 
     @Override
-    public Collection<HallgatoModel> getAllHallgato() {
+    public Collection<HallgatoEntity> getAllHallgato() {
         return hallgatoRepository.findAll();
     }
 
     @Override
-    public HallgatoModel getHallgatoById(Long id) {
+    public HallgatoEntity getHallgatoById(Long id) {
         return hallgatoRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User not found with id: " + id));
     }
 
     @Override
     public Long getHallgatoIdByUsername(String userName) {
         return hallgatoRepository.findIdByUserName(userName);
+    }
+
+    @Override
+    public boolean existsHallgatoByUserName(String userName) {
+        return hallgatoRepository.existsHallgatoByUserName(userName);
     }
 }
