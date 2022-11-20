@@ -1,14 +1,59 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>Sándor | __${}__</title>
+    <title th:text="'Sándor | ' + ${hallgato.name}"/>
     <link th:href="@{/css/sb-admin-2.css}" rel="stylesheet"/>
     <link th:href="@{/css/sb-admin-2.min.css}" rel="stylesheet"/>
     <script th:src="@{/js/sb-admin-2.js}"></script>
     <script th:src="@{/js/sb-admin-2.min.js}"></script>
+    <style>
+        .center-screen {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-right: -50%;
+          transform: translate(-50%, -50%);
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+    </style>
 </head>
 <body>
-<p>hallgato</p>
+<div class="center-screen">
+    <form th:action="@{/}" method="get">
+        <button type="submit" value="vissza">Kijelentkezés</button><br>
+    </form>
+    <form th:action="@{/hallgato/__${id}__/enrollTantargy}" method="get">
+        <button type="submit" value="hozzaadoldal">Új Tantárgy hozzáadása</button><br>
+    </form>
+
+    <table>
+        <tr th:unless="${tantargyak.isEmpty()}">
+            <td>Név:</td>
+            <td colspan="2">Időpont:</td>
+            <td>Időtartam</td>
+            <td>Kredit:</td>
+            <td>Tanár:</td>
+            <td></td>
+        </tr>
+        <tr th:each="tantargy: ${tantargyak}">
+            <td th:text="${tantargy.name}"/>
+            <td th:text="${tantargy.dayOfTheWeek}"/>
+            <td th:text="${tantargy.startTime}"/>
+            <td th:text="${tantargy.durationInMinutes} + ' perc'"/>
+            <td th:text="${tantargy.kredit}"/>
+            <td th:text="${tantargy.tanar.name}"></td>>
+            <td>
+                <form th:action="@{/hallgato/__${id}__/leaveTantargy/__${tantargy.tantargyId}__}" method="get">
+                    <button type="submit" value="vissza" class="btn btn-danger">Leadás</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
 </body>
 </html>

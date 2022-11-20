@@ -34,14 +34,14 @@
                 <input type="radio" value="hallgato" name="type" checked="" id="type">
                 <label>Tanár:</label>
                 <input type="radio" value="tanar" name="type" id="type"><br>
-                <button type="submit" value="belepes">Belépés</button><br>
+                <button type="submit" value="belepes" class="btn btn-primary">Belépés</button><br>
             </div>
         </form>
         <span th:if="${badLogin == 1}">Nem található ilyen felhasználó.<br></span>
     </div>
 
     <form th:action="@{/register}" method="get">
-        <button type="submit" value="regisztralas">Regisztrálás</button>
+        <button type="submit" value="regisztralas" class="btn btn-secondary">Regisztrálás</button>
     </form>
 </div>
 </body>
