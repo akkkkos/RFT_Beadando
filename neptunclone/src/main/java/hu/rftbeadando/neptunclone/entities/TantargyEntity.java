@@ -5,34 +5,35 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "tantargy")
 @NoArgsConstructor
-@Data
 public class TantargyEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tantargyId;
+    public Long tantargyId;
 
     @Column(name = "name", nullable = false)
-    private String name;
+    public String name;
 
     @Column(name = "dayOfTheWeek", nullable = false)
-    private String dayOfTheWeek;
+    public String dayOfTheWeek;
 
     @Column(name = "startTime", nullable = false)
-    private String startTime;
+    public String startTime;
 
     @Column(name = "durationInMinutes", nullable = false)
-    private int durationInMinutes;
+    public int durationInMinutes;
 
     @Column(name = "maxHallgato", nullable = false)
-    private int maxHallgato;
+    public int maxHallgato;
 
     @Column(name = "kredit", nullable = false)
-    private int kredit;
+    public int kredit;
 
     @ManyToOne(
             cascade = CascadeType.ALL
@@ -41,11 +42,13 @@ public class TantargyEntity {
             name = "tanar_id",
             referencedColumnName = "tanarId"
     )
-    private TanarEntity tanar;
+    public TanarEntity tanar;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL
-    )
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE
+            })
     @JoinTable(
             name = "HallgatoTantargyMap",
             joinColumns = @JoinColumn(
@@ -57,12 +60,21 @@ public class TantargyEntity {
                     referencedColumnName = "hallgatoId"
             )
     )
-    private List<HallgatoEntity> hallgatok;
+    private Set<HallgatoEntity> hallgatok = new HashSet<>();;
 
-    public void addHallgato(HallgatoEntity hallgato){
-        if(hallgatok == null) hallgatok = new ArrayList<>();
-        hallgatok.add(hallgato);
+    public void addHallgato(HallgatoEntity hallgato) {
+        this.hallgatok.add(hallgato);
+        hallgato.getTantargyak().add(this);
     }
+
+    public void removeHallgato(long hallgatoId) {
+        HallgatoEntity hallgato = this.hallgatok.stream().filter(t -> t.hallgatoId == hallgatoId).findFirst().orElse(null);
+        if (hallgato != null) {
+            this.hallgatok.remove(hallgato);
+            hallgato.getTantargyak().remove(this);
+        }
+    }
+
 
     public TantargyEntity(String name, String dayOfTheWeek, String startTime, int durationInMinutes, int maxHallgato, int kredit, TanarEntity tanar) {
         this.name = name;

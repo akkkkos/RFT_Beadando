@@ -1,5 +1,6 @@
 package hu.rftbeadando.neptunclone.services.tantargy;
 
+import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 import hu.rftbeadando.neptunclone.entities.TantargyEntity;
 import hu.rftbeadando.neptunclone.exceptions.UserNotFoundException;
 import hu.rftbeadando.neptunclone.repository.TantargyRepository;
@@ -33,7 +34,7 @@ public class DefaultTantargyService implements TantargyServiceInterface {
     }
 
     @Override
-    public TantargyEntity getTantargyById(Long id) {
+    public TantargyEntity getTantargyByTantargyId(Long id) {
         return tantargyRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Tantargy not found with id: " + id));
     }
 
@@ -46,4 +47,16 @@ public class DefaultTantargyService implements TantargyServiceInterface {
     public void deleteByIdOnlyTantargy(Long id) {
         tantargyRepository.deleteByIdOnlyTantargy(id);
     }
+
+    @Override
+    public Collection<TantargyEntity> getAllTantargyThatHasHallgatoId(Long id) {
+        return tantargyRepository.getAllTantargyThatHasHallgatoId(id);
+    }
+
+    @Override
+    public Collection<TantargyEntity> getAllTantargyThatDoesNotHaveHallgatoId(Long id) {
+        return tantargyRepository.getAllTantargyThatDoesNotHaveHallgatoId(id);
+    }
+
+
 }
