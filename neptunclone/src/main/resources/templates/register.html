@@ -25,7 +25,7 @@
 <div class="center-screen">
     <div>
         <form th:action="@{/}" method="get">
-            <button type="submit" value="vissza">Vissza</button><br/><br/>
+            <button type="submit" value="vissza" class="btn btn-secondary">Vissza</button><br/><br/>
         </form>
         <form th:action="@{/register}" method="post" th:object="${registerFormValues}">
             <div class="form-group">
@@ -41,7 +41,7 @@
                 <input type="radio" value="hallgato" name="type" checked="" id="type">
                 <label>Tanár:</label>
                 <input type="radio" value="tanar" name="type" id="type"><br>
-                <button type="submit" value="belepes">Regisztálás</button><br>
+                <button type="submit" value="belepes" class="btn btn-primary">Regisztrálás</button><br>
             </div>
         </form>
         <span th:if="${missing == 1}">Hiányzó adatok.<br><br></span>

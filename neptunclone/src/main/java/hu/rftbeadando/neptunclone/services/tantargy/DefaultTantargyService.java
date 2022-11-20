@@ -34,7 +34,7 @@ public class DefaultTantargyService implements TantargyServiceInterface {
     }
 
     @Override
-    public TantargyEntity getTantargyById(Long id) {
+    public TantargyEntity getTantargyByTantargyId(Long id) {
         return tantargyRepository.findById(id).orElseThrow(() -> new UserNotFoundException("Tantargy not found with id: " + id));
     }
 
@@ -49,7 +49,14 @@ public class DefaultTantargyService implements TantargyServiceInterface {
     }
 
     @Override
-    public Collection<TantargyEntity> getAllTantargyThatHasHallgato(HallgatoEntity hallgatoEntity) {
-        return tantargyRepository.getAllTantargyThatHasHallgato(hallgatoEntity);
+    public Collection<TantargyEntity> getAllTantargyThatHasHallgatoId(Long id) {
+        return tantargyRepository.getAllTantargyThatHasHallgatoId(id);
     }
+
+    @Override
+    public Collection<TantargyEntity> getAllTantargyThatDoesNotHaveHallgatoId(Long id) {
+        return tantargyRepository.getAllTantargyThatDoesNotHaveHallgatoId(id);
+    }
+
+
 }

@@ -18,5 +18,9 @@ public interface TantargyRepository extends JpaRepository<TantargyEntity, Long> 
     @Query(value = "DELETE FROM TANTARGY WHERE tantargy_Id = ?1", nativeQuery = true)
     void deleteByIdOnlyTantargy(Long id);
 
-    Collection<TantargyEntity> getAllTantargyThatHasHallgato(HallgatoEntity hallgatoEntity);
+    @Query(value = "SELECT * FROM TANTARGY WHERE TANTARGY_ID IN (SELECT TANTARGY_ID FROM HALLGATO_TANTARGY_MAP WHERE HALLGATO_ID = ?1)", nativeQuery = true)
+    Collection<TantargyEntity> getAllTantargyThatHasHallgatoId(Long id);
+
+    @Query(value = "SELECT * FROM TANTARGY WHERE TANTARGY_ID NOT IN (SELECT TANTARGY_ID FROM HALLGATO_TANTARGY_MAP WHERE HALLGATO_ID = ?1)", nativeQuery = true)
+    Collection<TantargyEntity> getAllTantargyThatDoesNotHaveHallgatoId(Long id);
 }

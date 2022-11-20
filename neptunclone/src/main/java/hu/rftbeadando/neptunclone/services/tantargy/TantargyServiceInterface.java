@@ -8,8 +8,10 @@ import java.util.Collection;
 public interface TantargyServiceInterface {
     void addTantargy(TantargyEntity request);
     Collection<TantargyEntity> getAllTantargy();
-    TantargyEntity getTantargyById(Long id);
+    TantargyEntity getTantargyByTantargyId(Long id);
     Collection<TantargyEntity> getAllTantargyByTanarId(Long tanarId);
     void deleteByIdOnlyTantargy(Long id);
-    Collection<TantargyEntity> getAllTantargyThatHasHallgato(HallgatoEntity hallgatoEntity);
+    Collection<TantargyEntity> getAllTantargyThatHasHallgatoId(Long id);
+    Collection<TantargyEntity> getAllTantargyThatDoesNotHaveHallgatoId(Long id);
+
 }
