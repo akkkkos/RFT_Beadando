@@ -13,15 +13,15 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Compile with Maven
-        run: mvn compile
+        run: mvn -f ./neptunclone/pom.xml compile
       - name: Test with Maven
-        run: mvn test
+        run: mvn -f ./neptunclone/pom.xml test
       - name: Coverage with JaCoCo
         if: always()
-        run: mvn jacoco:report
+        run: mvn -f ./neptunclone/pom.xml jacoco:report
       - name: Publish coverage report
         if: always()
         uses: actions/upload-artifact@v3
         with:
           name: neptun-clone-coverage
-          path: ./target/site/jacoco
+          path: ./neptunclone/target/site/jacoco
