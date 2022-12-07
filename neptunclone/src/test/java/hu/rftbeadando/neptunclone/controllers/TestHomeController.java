@@ -1,5 +1,6 @@
 package hu.rftbeadando.neptunclone.controllers;
 
+import hu.rftbeadando.neptunclone.controllers.web.HomeController;
 import hu.rftbeadando.neptunclone.entities.TanarEntity;
 import hu.rftbeadando.neptunclone.formmodels.LoginFormValues;
 import hu.rftbeadando.neptunclone.formmodels.RegisterFormValues;
