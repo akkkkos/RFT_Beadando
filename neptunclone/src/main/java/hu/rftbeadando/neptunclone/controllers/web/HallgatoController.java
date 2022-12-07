@@ -1,4 +1,4 @@
-package hu.rftbeadando.neptunclone.controllers;
+package hu.rftbeadando.neptunclone.controllers.web;
 
 import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 import hu.rftbeadando.neptunclone.entities.TantargyEntity;
@@ -21,6 +21,7 @@ public class HallgatoController {
 
     @Autowired
     private TantargyServiceInterface tantargyService;
+
 
     @GetMapping("/hallgato/{id}")
     public String hallgatoPage(@PathVariable Long id, Model model) {

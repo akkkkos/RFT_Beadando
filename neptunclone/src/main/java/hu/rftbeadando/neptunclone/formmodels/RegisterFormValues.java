@@ -2,10 +2,10 @@ package hu.rftbeadando.neptunclone.formmodels;
 
 public class RegisterFormValues {
 
-    private String username;
-    private String password;
-    private String type;
-    private String name;
+    public String username;
+    public String password;
+    public String type;
+    public String name;
 
     public String getUsername() {
         return username;

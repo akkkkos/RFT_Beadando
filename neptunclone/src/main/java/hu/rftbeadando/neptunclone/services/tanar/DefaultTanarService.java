@@ -48,4 +48,9 @@ public class DefaultTanarService implements TanarServiceInterface {
     public boolean existsTanarByUserName(String userName) {
         return tanarRepository.existsTanarByUserName(userName);
     }
+
+    @Override
+    public void removeTanarById(Long id) {
+        tanarRepository.deleteById(id);
+    }
 }
