@@ -39,11 +39,13 @@ public class TestHallgatoController {
     @Mock
     private TantargyServiceInterface tantargyService;
 
+    @Mock
     private HallgatoEntity hallgato = new HallgatoEntity("name", "username");
 
     @Mock
     private Collection<TantargyEntity> tantargyak;
 
+    @Mock
     private TanarEntity tanar = new TanarEntity("name", "username");
 
     @Mock

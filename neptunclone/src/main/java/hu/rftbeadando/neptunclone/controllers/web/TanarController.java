@@ -26,6 +26,11 @@ public class TanarController {
     @Autowired
     private TantargyServiceInterface tantargyService;
 
+    public TanarController(TanarServiceInterface tanarService, TantargyServiceInterface tantargyService) {
+        this.tanarService = tanarService;
+        this.tantargyService = tantargyService;
+    }
+
     @GetMapping("/tanar/{id}")
     public String tanarPage(@PathVariable Long id, Model model) {
         Collection<TantargyEntity> tantargyak = tantargyService.getAllTantargyByTanarId(id);
