@@ -22,6 +22,11 @@ public class HomeController {
     @Autowired
     private TanarServiceInterface tanarService;
 
+    public HomeController(HallgatoServiceInterface hallgatoService, TanarServiceInterface tanarService) {
+        this.hallgatoService = hallgatoService;
+        this.tanarService = tanarService;
+    }
+
     @GetMapping("/")
     public String loginPage(@RequestParam(name = "badLogin", required = false, defaultValue = "0") int badLogin, Model model) {
         model.addAttribute("badLogin", badLogin);
