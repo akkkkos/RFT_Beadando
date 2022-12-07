@@ -1,5 +1,6 @@
 package hu.rftbeadando.neptunclone.controllers.web;
 
+
 import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 import hu.rftbeadando.neptunclone.entities.TanarEntity;
 import hu.rftbeadando.neptunclone.formmodels.LoginFormValues;
@@ -21,6 +22,11 @@ public class HomeController {
     private HallgatoServiceInterface hallgatoService;
     @Autowired
     private TanarServiceInterface tanarService;
+
+    public HomeController(HallgatoServiceInterface hallgatoService, TanarServiceInterface tanarService) {
+        this.hallgatoService = hallgatoService;
+        this.tanarService = tanarService;
+    }
 
     @GetMapping("/")
     public String loginPage(@RequestParam(name = "badLogin", required = false, defaultValue = "0") int badLogin, Model model) {

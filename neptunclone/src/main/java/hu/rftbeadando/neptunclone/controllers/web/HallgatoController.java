@@ -1,5 +1,6 @@
 package hu.rftbeadando.neptunclone.controllers.web;
 
+
 import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 import hu.rftbeadando.neptunclone.entities.TantargyEntity;
 import hu.rftbeadando.neptunclone.services.hallgato.HallgatoServiceInterface;
@@ -21,6 +22,11 @@ public class HallgatoController {
 
     @Autowired
     private TantargyServiceInterface tantargyService;
+
+    public HallgatoController(HallgatoServiceInterface hallgatoService, TantargyServiceInterface tantargyService) {
+        this.hallgatoService = hallgatoService;
+        this.tantargyService = tantargyService;
+    }
 
 
     @GetMapping("/hallgato/{id}")
