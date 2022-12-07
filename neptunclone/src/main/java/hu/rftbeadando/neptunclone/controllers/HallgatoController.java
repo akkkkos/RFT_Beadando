@@ -22,6 +22,11 @@ public class HallgatoController {
     @Autowired
     private TantargyServiceInterface tantargyService;
 
+    public HallgatoController(HallgatoServiceInterface hallgatoService, TantargyServiceInterface tantargyService) {
+        this.hallgatoService = hallgatoService;
+        this.tantargyService = tantargyService;
+    }
+
     @GetMapping("/hallgato/{id}")
     public String hallgatoPage(@PathVariable Long id, Model model) {
         HallgatoEntity hallgato = hallgatoService.getHallgatoById(id);
