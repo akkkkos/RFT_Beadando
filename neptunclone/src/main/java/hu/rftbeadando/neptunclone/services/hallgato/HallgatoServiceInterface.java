@@ -10,4 +10,5 @@ public interface HallgatoServiceInterface {
     HallgatoEntity getHallgatoById(Long id);
     Long getHallgatoIdByUsername(String userName);
     boolean existsHallgatoByUserName(String userName);
+    void removeHallgatoById(Long id);
 }

@@ -13,5 +13,4 @@ public interface TantargyServiceInterface {
     void deleteByIdOnlyTantargy(Long id);
     Collection<TantargyEntity> getAllTantargyThatHasHallgatoId(Long id);
     Collection<TantargyEntity> getAllTantargyThatDoesNotHaveHallgatoId(Long id);
-
 }

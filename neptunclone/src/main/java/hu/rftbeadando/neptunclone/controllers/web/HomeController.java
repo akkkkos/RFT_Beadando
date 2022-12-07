@@ -1,4 +1,5 @@
-package hu.rftbeadando.neptunclone.controllers;
+package hu.rftbeadando.neptunclone.controllers.web;
+
 
 import hu.rftbeadando.neptunclone.entities.HallgatoEntity;
 import hu.rftbeadando.neptunclone.entities.TanarEntity;

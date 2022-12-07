@@ -48,4 +48,9 @@ public class DefaultHallgatoService implements HallgatoServiceInterface{
     public boolean existsHallgatoByUserName(String userName) {
         return hallgatoRepository.existsHallgatoByUserName(userName);
     }
+
+    @Override
+    public void removeHallgatoById(Long id) {
+        hallgatoRepository.deleteById(id);
+    }
 }
