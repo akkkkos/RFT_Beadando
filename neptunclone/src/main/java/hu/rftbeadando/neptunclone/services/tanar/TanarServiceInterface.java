@@ -10,4 +10,5 @@ public interface TanarServiceInterface {
     TanarEntity getTanarById(Long id);
     Long getTanarIdByUsername(String userName);
     boolean existsTanarByUserName(String userName);
+    void removeTanarById(Long id);
 }
